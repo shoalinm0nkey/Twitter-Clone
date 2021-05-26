@@ -11,8 +11,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
     end
     assert_template 'users/new'
-    assert_select 'div#<CSS id for error explanation>'
-    assert_select 'div.<CSS class for field with error>'
+    assert_select 'div#error_explanation'
+    assert_select 'div.alert-danger'
   end
   
   test "valid signup info" do
@@ -27,6 +27,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
-    assert_not flash.FILL_IN
+    assert_not flash[:error]
   end
 end
